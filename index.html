@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - Modern E-Commerce</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Shop<span>Ease</span></a>
+                <button class="mobile-toggle" id="mobileToggle">☰</button>
+                <div class="nav-links" id="navLinks">
+                    <a href="#">Home</a>
+                    <a href="#">Shop</a>
+                    <a href="#">Categories</a>
+                    <a href="#">Featured</a>
+                    <a href="#">Contact</a>
+                    <div class="cart-icon" id="cartIcon">
+                        <span>🛒</span>
+                        <div class="cart-count">0</div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Shop with Ease, Anytime, Anywhere</h1>
+            <p>Discover the latest trends and products with our curated collection. Quality assured with fast delivery
+                to your doorstep.</p>
+            <a href="#" class="btn">Shop Now</a>
+            <a href="#" class="btn btn-outline">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Filter and Sort -->
+        <div class="filter-sort">
+            <div>
+                <label for="category">Category:</label>
+                <select id="category">
+                    <option value="all">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="home">Home & Kitchen</option>
+                    <option value="books">Books</option>
+                </select>
+            </div>
+            <div>
+                <label for="sort">Sort By:</label>
+                <select id="sort">
+                    <option value="popularity">Popularity</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="newest">Newest First</option>
+                </select>
+            </div>
+            <div>
+                <label for="price-range">Price:</label>
+                <select id="price-range">
+                    <option value="all">All Prices</option>
+                    <option value="0-50">$0 - $50</option>
+                    <option value="50-100">$50 - $100</option>
+                    <option value="100-200">$100 - $200</option>
+                    <option value="200+">$200+</option>
+                </select>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search products..." id="search">
+                <button>🔍</button>
+            </div>
+        </div>
+        <!-- Products Grid -->
+        <div class="products" id="products">
+            <!-- Product cards will be dynamically inserted here -->
+        </div>
+        <!-- Shop Page -->
+        <div id="shopPage" class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>All Products</h1>
+                    <p>Browse our complete collection of high-quality products</p>
+                </div>
+    
+                <!-- Categories Quick Links -->
+                <div class="category-buttons">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="electronics">Electronics</button>
+                    <button class="category-btn" data-category="clothing">Clothing</button>
+                    <button class="category-btn" data-category="home">Home & Kitchen</button>
+                    <button class="category-btn" data-category="books">Books</button>
+                </div>
+    
+                <!-- Shop Content -->
+                <div class="shop-container">
+                    <!-- Left Sidebar with Advanced Filters -->
+                    <div class="shop-sidebar">
+                        <div class="filter-section">
+                            <h3>Categories</h3>
+                            <div class="filter-group">
+                                <label><input type="checkbox" checked> Electronics (3)</label>
+                                <label><input type="checkbox" checked> Clothing (2)</label>
+                                <label><input type="checkbox" checked> Home & Kitchen (2)</label>
+                                <label><input type="checkbox" checked> Books (1)</label>
+                            </div>
+                        </div>
+    
+                        <div class="filter-section">
+                            <h3>Price Range</h3>
+                            <div class="price-slider">
+                                <input type="range" min="0" max="400" value="400" class="slider" id="priceSlider">
+                                <div class="price-range">$0 - $<span id="maxPriceValue">400</span></div>
+                            </div>
+                        </div>
+    
+                        <div class="filter-section">
+                            <h3>Rating</h3>
+                            <div class="filter-group">
+                                <label><input type="checkbox"> ★★★★★ (5.0)</label>
+                                <label><input type="checkbox" checked> ★★★★☆ & up (4.0+)</label>
+                                <label><input type="checkbox" checked> ★★★☆☆ & up (3.0+)</label>
+                            </div>
+                        </div>
+    
+                        <div class="filter-section">
+                            <h3>Availability</h3>
+                            <div class="filter-group">
+                                <label><input type="checkbox" checked> In Stock</label>
+                                <label><input type="checkbox"> On Sale</label>
+                                <label><input type="checkbox"> New Arrivals</label>
+                            </div>
+                        </div>
+    
+                        <button class="btn filter-apply-btn">Apply Filters</button>
+                        <button class="btn-outline filter-reset-btn">Reset</button>
+                    </div>
+    
+                    <!-- Product Grid -->
+                    <div class="shop-products">
+                        <div class="shop-header">
+                            <div class="results-count">Showing <span>8</span> products</div>
+                            <div class="shop-sort">
+                                <label for="shopSort">Sort by:</label>
+                                <select id="shopSort">
+                                    <option value="popularity">Popularity</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                    <option value="newest">Newest First</option>
+                                </select>
+                            </div>
+                        </div>
+    
+                        <!-- Products will be dynamically loaded here -->
+                        <div class="products" id="shopProducts"></div>
+    
+                        <!-- Pagination -->
+                        <div class="pagination">
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <button class="page-btn next">Next →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Categories Page -->
+        <div id="categoriesPage" class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Product Categories</h1>
+                    <p>Explore our wide selection of products by category</p>
+                </div>
+    
+                <div class="categories-grid">
+                    <!-- Electronics Category -->
+                    <div class="category-card">
+                        <div class="category-image">
+                            <img src="/api/placeholder/400/300" alt="Electronics">
+                        </div>
+                        <div class="category-info">
+                            <h2>Electronics</h2>
+                            <p>Latest gadgets and tech accessories</p>
+                            <div class="category-stats">
+                                <span>3 Products</span>
+                                <span>4.7 ★ Average</span>
+                            </div>
+                            <a href="#" class="btn">Shop Electronics</a>
+                        </div>
+                    </div>
+    
+                    <!-- Clothing Category -->
+                    <div class="category-card">
+                        <div class="category-image">
+                            <img src="/api/placeholder/400/300" alt="Clothing">
+                        </div>
+                        <div class="category-info">
+                            <h2>Clothing</h2>
+                            <p>Stylish and comfortable apparel</p>
+                            <div class="category-stats">
+                                <span>2 Products</span>
+                                <span>4.3 ★ Average</span>
+                            </div>
+                            <a href="#" class="btn">Shop Clothing</a>
+                        </div>
+                    </div>
+    
+                    <!-- Home & Kitchen Category -->
+                    <div class="category-card">
+                        <div class="category-image">
+                            <img src="/api/placeholder/400/300" alt="Home & Kitchen">
+                        </div>
+                        <div class="category-info">
+                            <h2>Home & Kitchen</h2>
+                            <p>Essential appliances and home goods</p>
+                            <div class="category-stats">
+                                <span>2 Products</span>
+                                <span>4.65 ★ Average</span>
+                            </div>
+                            <a href="#" class="btn">Shop Home & Kitchen</a>
+                        </div>
+                    </div>
+    
+                    <!-- Books Category -->
+                    <div class="category-card">
+                        <div class="category-image">
+                            <img src="/api/placeholder/400/300" alt="Books">
+                        </div>
+                        <div class="category-info">
+                            <h2>Books</h2>
+                            <p>Bestselling titles and new releases</p>
+                            <div class="category-stats">
+                                <span>1 Product</span>
+                                <span>4.9 ★ Average</span>
+                            </div>
+                            <a href="#" class="btn">Shop Books</a>
+                        </div>
+                    </div>
+    
+                    <!-- Coming Soon Category -->
+                    <div class="category-card coming-soon">
+                        <div class="category-image">
+                            <img src="/api/placeholder/400/300" alt="Sports & Outdoors">
+                            <div class="coming-soon-label">Coming Soon</div>
+                        </div>
+                        <div class="category-info">
+                            <h2>Sports & Outdoors</h2>
+                            <p>Equipment and gear for active lifestyles</p>
+                            <div class="category-stats">
+                                <span>0 Products</span>
+                            </div>
+                            <a href="#" class="btn btn-disabled">Not Available</a>
+                        </div>
+                    </div>
+    
+                    <!-- Coming Soon Category -->
+                    <div class="category-card coming-soon">
+                        <div class="category-image">
+                            <img src="/api/placeholder/400/300" alt="Beauty & Personal Care">
+                            <div class="coming-soon-label">Coming Soon</div>
+                        </div>
+                        <div class="category-info">
+                            <h2>Beauty & Personal Care</h2>
+                            <p>Premium beauty products and essentials</p>
+                            <div class="category-stats">
+                                <span>0 Products</span>
+                            </div>
+                            <a href="#" class="btn btn-disabled">Not Available</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Featured Page -->
+        <div id="featuredPage" class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Featured Collections</h1>
+                    <p>Discover our handpicked selections and special offers</p>
+                </div>
+    
+                <!-- Featured Banner -->
+                <div class="featured-banner">
+                    <div class="featured-content">
+                        <h2>Spring Sale</h2>
+                        <p>Up to 40% off on selected items</p>
+                        <a href="#" class="btn">Shop Now</a>
+                    </div>
+                    <img src="/api/placeholder/800/400" alt="Spring Sale">
+                </div>
+    
+                <!-- Trending Products -->
+                <div class="featured-section">
+                    <div class="section-header">
+                        <h2>Trending This Week</h2>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="featured-products" id="trendingProducts"></div>
+                </div>
+    
+                <!-- New Arrivals -->
+                <div class="featured-section">
+                    <div class="section-header">
+                        <h2>New Arrivals</h2>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="featured-products" id="newArrivalsProducts"></div>
+                </div>
+    
+                <!-- Special Deals Grid -->
+                <div class="special-deals">
+                    <div class="deal-card">
+                        <img src="/api/placeholder/400/200" alt="Electronics Deal">
+                        <div class="deal-content">
+                            <h3>Electronics Sale</h3>
+                            <p>Save up to 30% on selected electronics</p>
+                            <a href="#" class="btn btn-sm">View Deals</a>
+                        </div>
+                    </div>
+                    <div class="deal-card">
+                        <img src="/api/placeholder/400/200" alt="Clothing Deal">
+                        <div class="deal-content">
+                            <h3>Fashion Clearance</h3>
+                            <p>Last chance to save on seasonal styles</p>
+                            <a href="#" class="btn btn-sm">View Deals</a>
+                        </div>
+                    </div>
+                    <div class="deal-card">
+                        <img src="/api/placeholder/400/200" alt="Home Deal">
+                        <div class="deal-content">
+                            <h3>Home Essentials</h3>
+                            <p>Buy one get one 50% off on kitchen items</p>
+                            <a href="#" class="btn btn-sm">View Deals</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Featured Brands -->
+                <div class="featured-section">
+                    <div class="section-header">
+                        <h2>Featured Brands</h2>
+                    </div>
+                    <div class="brands-grid">
+                        <div class="brand-logo">
+                            <div class="placeholder-logo">Brand A</div>
+                        </div>
+                        <div class="brand-logo">
+                            <div class="placeholder-logo">Brand B</div>
+                        </div>
+                        <div class="brand-logo">
+                            <div class="placeholder-logo">Brand C</div>
+                        </div>
+                        <div class="brand-logo">
+                            <div class="placeholder-logo">Brand D</div>
+                        </div>
+                        <div class="brand-logo">
+                            <div class="placeholder-logo">Brand E</div>
+                        </div>
+                        <div class="brand-logo">
+                            <div class="placeholder-logo">Brand F</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Contact Page -->
+        <div id="contactPage" class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Contact Us</h1>
+                    <p>We're here to help with any questions or concerns</p>
+                </div>
+    
+                <div class="contact-container">
+                    <!-- Contact Form -->
+                    <div class="contact-form-container">
+                        <h2>Send Us a Message</h2>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="contactName">Your Name</label>
+                                <input type="text" id="contactName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Email Address</label>
+                                <input type="email" id="contactEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactSubject">Subject</label>
+                                <input type="text" id="contactSubject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage">Message</label>
+                                <textarea id="contactMessage" rows="6" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+    
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <h2>Get in Touch</h2>
+    
+                        <div class="info-card">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h3>Phone</h3>
+                                <p>Customer Service: (555) 123-4567</p>
+                                <p>Sales Department: (555) 987-6543</p>
+                            </div>
+                        </div>
+    
+                        <div class="info-card">
+                            <div class="info-icon">✉️</div>
+                            <div class="info-content">
+                                <h3>Email</h3>
+                                <p>Customer Support: support@shopease.com</p>
+                                <p>General Inquiries: info@shopease.com</p>
+                            </div>
+                        </div>
+    
+                        <div class="info-card">
+                            <div class="info-icon">🏢</div>
+                            <div class="info-content">
+                                <h3>Office</h3>
+                                <p>123 E-Commerce Street</p>
+                                <p>Digital City, DC 10101</p>
+                            </div>
+                        </div>
+    
+                        <div class="info-card">
+                            <div class="info-icon">⏰</div>
+                            <div class="info-content">
+                                <h3>Business Hours</h3>
+                                <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                                <p>Saturday: 9:00 AM - 5:00 PM</p>
+                                <p>Sunday: Closed</p>
+                            </div>
+                        </div>
+    
+                        <div class="social-contact">
+                            <h3>Connect With Us</h3>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon">FB</a>
+                                <a href="#" class="social-icon">IG</a>
+                                <a href="#" class="social-icon">TW</a>
+                                <a href="#" class="social-icon">YT</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- FAQ Section -->
+                <div class="faq-section">
+                    <h2>Frequently Asked Questions</h2>
+    
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                How long does shipping take?
+                                <span class="faq-toggle">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Standard shipping typically takes 3-5 business days within the continental US. Express
+                                shipping options are available for 1-2 business day delivery.
+                            </div>
+                        </div>
+    
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                What is your return policy?
+                                <span class="faq-toggle">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                We offer a 30-day return policy for most items. Products must be in original condition with
+                                all packaging and tags. Some items like electronics may have a 14-day return window.
+                            </div>
+                        </div>
+    
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                Do you ship internationally?
+                                <span class="faq-toggle">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Yes, we ship to over 60 countries worldwide. International shipping times vary by location,
+                                typically 7-14 business days. Additional customs fees may apply.
+                            </div>
+                        </div>
+    
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                How can I track my order?
+                                <span class="faq-toggle">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                Once your order ships, you'll receive a confirmation email with tracking information. You
+                                can also track your order in your account dashboard.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" id="closeCart">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically inserted here -->
+        </div>
+        <div class="cart-total" id="cartTotal">Total: $0.00</div>
+        <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-header">
+            <h2>Checkout</h2>
+            <button class="close-checkout" id="closeCheckout">×</button>
+        </div>
+        <form class="checkout-form" id="checkoutForm">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Shipping Address</label>
+                <input type="text" id="address" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" required>
+                </div>
+                <div class="form-group">
+                    <label for="zipCode">Zip Code</label>
+                    <input type="text" id="zipCode" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country" required>
+                    <option value="">Select Country</option>
+                    <option value="usa">United States</option>
+                    <option value="canada">Canada</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="australia">Australia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="paymentMethod">Payment Method</label>
+                <select id="paymentMethod" required>
+                    <option value="">Select Payment Method</option>
+                    <option value="credit">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="bank">Bank Transfer</option>
+                </select>
+            </div>
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <div id="orderSummaryItems">
+                    <!-- Order summary items will be dynamically inserted here -->
+                </div>
+                <div class="summary-total" id="orderTotal">Total: $0.00</div>
+            </div>
+            <button type="submit" class="place-order-btn">Place Order</button>
+        </form>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-icon">✓</div>
+        <h2>Order Placed Successfully!</h2>
+        <p class="success-message">Thank you for your purchase. Your order has been received and is being processed.</p>
+        <button class="continue-shopping" id="continueShoppingBtn">Continue Shopping</button>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">Special Offers</a></li>
+                        <li><a href="#">Clearance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">TW</a>
+                        <a href="#">YT</a>
+                    </div>
+                    <p style="margin-top: 1rem;">Subscribe to our newsletter for exclusive deals and updates.</p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 ShopEase. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="./index.js"></script>
+
+</html>
